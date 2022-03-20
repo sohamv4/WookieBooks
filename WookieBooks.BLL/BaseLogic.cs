@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using WookieBooks.Models;
 using WookieBooks.Repository;
 
@@ -41,6 +37,10 @@ namespace WookieBooks.BLL
         public virtual List<TPoco> GetAll()
         {
             return _repository.GetAll().ToList();
+        }
+        public virtual TPoco Get(Guid id)
+        {
+            return _repository.GetSingle(c => c.Id == id);
         }
     }
 }

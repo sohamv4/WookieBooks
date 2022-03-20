@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using WookieBooks.Models;
 
 namespace WookieBooks.BLL
@@ -27,6 +23,10 @@ namespace WookieBooks.BLL
         public override void Delete(Book[] pocos)
         {
             base.Delete(pocos);
+        }
+        public override Book Get(Guid id)
+        {
+            return base.Get(id);
         }
     }
 }

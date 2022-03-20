@@ -8,5 +8,6 @@ namespace WookieBooks.Repository
         void Add(params T[] items);
         void Update(params T[] items);
         void Remove(params T[] items);
+        T GetSingle(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties);
     }
 }

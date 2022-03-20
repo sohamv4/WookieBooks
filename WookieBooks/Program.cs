@@ -1,27 +1,31 @@
-using Microsoft.EntityFrameworkCore;
-using WookieBooks;
-using WookieBooks.BLL;
+
+//using WookieBooks;
 using WookieBooks.Models;
 using WookieBooks.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var options = new DbContextOptionsBuilder<BooksDbContext>()
-   .UseInMemoryDatabase(databaseName: "Test")
-   .Options;
-
-using (var context = new BooksDbContext(options))
+//Two defaults inserts into in memory db
+using (var context = new BooksDbContext())
 {
-    var book = new Book
-    {
+    var book1 = new Book
+        { 
         Author = "Elizabeth",
         Title = "Clean Code",
         Description = "23 Tsawassen.",
-        CoverImage="Image",
-        Price=50
+        CoverImage = "Image",
+        Price = 50
+        };
+    var book2 = new Book
+    {
+        Author = "Tom",
+        Title = "Apple",
+        Description = "IPhone 13.",
+        CoverImage = "Image",
+        Price = 90
     };
-
-    context.Books.Add(book);
+    context.Books.Add(book1);
+    context.Books.Add(book2);
     context.SaveChanges();
 
 }
@@ -42,7 +46,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.ConfigureApi();
+WookieBooks.Api.ConfigureApi(app);
 
 app.Run();
 
